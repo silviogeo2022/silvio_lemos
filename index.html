@@ -5,18 +5,27 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Portfólio de Silvio Lemos</title>
   <link rel="stylesheet" href="style.css">
-  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Merriweather:wght@400;700;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="icon" type="image/jpeg" href="perfil.jpeg">
 </head>
 <body>
+  <a href="https://wa.me/5591991284476" target="_blank" class="floating-whatsapp" aria-label="Falar no WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+  </a>
   <header class="header">
     <div class="header-content">
       <div class="profile-section">
         <img src="perfil.jpeg" alt="Silvio Lemos" class="profile-image">
         <div class="profile-info">
+          <span class="status-badge"><span class="status-dot"></span>Disponível para novos projetos</span>
           <h1>Silvio Lemos</h1>
           <p class="profile-title">Cientista de Dados Geoespaciais/Engenheiro de Dados Geoespaciais</p>
           <p class="profile-description">Desenvolvimento de Soluções Geoespaciais, aplicando Ciência de Dados, Sensoriamento Remoto, Automação e GeoAI.</p>
+          <div class="hero-cta">
+            <a href="#contato" class="btn-hero">Vamos conversar <i class="fas fa-arrow-right"></i></a>
+            <a href="https://wa.me/5591991284476" target="_blank" class="btn-hero-secondary"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+          </div>
         </div>
       </div>
       <div class="header-stats">
@@ -822,13 +831,19 @@
       <h2 class="section-title">Vamos Conversar?</h2>
       <p class="section-subtitle">Estou sempre aberto a novas oportunidades e colaborações</p>
 
+      <div class="contact-btn-wrap">
+        <a href="mailto:silviolemosamb@gmail.com" class="btn-contact-main">
+          <i class="fas fa-paper-plane"></i> Enviar mensagem
+        </a>
+      </div>
+
       <div class="contact-grid">
-        <a href="mailto:silviolemosamn@gmail.com" class="contact-card scroll-reveal-item">
+        <a href="mailto:silviolemosamb@gmail.com" class="contact-card scroll-reveal-item">
           <div class="contact-icon">
             <i class="fas fa-envelope"></i>
           </div>
           <h3>E-mail</h3>
-          <p>silviolemosamn@gmail.com</p>
+          <p>silviolemosamb@gmail.com</p>
         </a>
 
         <a href="https://wa.me/5591991284476" target="_blank" class="contact-card scroll-reveal-item">
@@ -910,6 +925,22 @@
     document.querySelectorAll('.scroll-reveal, .scroll-reveal-item').forEach(el => {
       observer.observe(el);
     });
+
+    // Destaque do link ativo no menu conforme a rolagem
+    const sections = document.querySelectorAll('main section[id], section#contato');
+    const navLinks = document.querySelectorAll('.nav-link');
+
+    const navObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          navLinks.forEach(link => {
+            link.classList.toggle('active', link.getAttribute('href') === `#${entry.target.id}`);
+          });
+        }
+      });
+    }, { rootMargin: '-40% 0px -55% 0px' });
+
+    sections.forEach(section => navObserver.observe(section));
   </script>
 </body>
 </html>
